@@ -1,0 +1,26 @@
+#:::::::::::::::::: ReplicaSet definition for k8 ::::::::::::::::::::::
+apiVersion: apps/v1 #version of kube-apiserver for ReplicaSet to manage workloads
+kind: ReplicaSet #kind of resource to create
+metadata: 
+  name: myapp-backend-replicaset #to identify ReplicaSet on k8
+  labels: #to manage, identify, filter, select pods
+    app: myapp 
+    type: backend 
+spec: 
+  template: #template for pods to create in ReplicaSet
+    #metadata for template pod
+    metadata:
+      #name of pod on k8 to identify it later + (random suffix will be added later)
+      name: myapp-backend-pod 
+      labels: #to identify, manage, filter, select pods ahead 
+        app: myapp-backend 
+        type: backend 
+    spec:
+      containers: 
+        - name: nginx-container # container name in pod
+          image: nginx #container image name docker-hub .etc
+
+  replicas: 3 #no. of replicas of pod to maintain at all times 
+  selector: # used to select pods using labels
+    matchLabels: # pods with this label will be selected & managed by this ReplicaSet
+      type: backend # selected pods with label type backend 

@@ -1,0 +1,12 @@
+#:::::::::::::: Pod Definition for k8 :::::::::::::::::::
+apiVersion: v1 #kube-apiserver version
+kind: Pod #type of resource to create
+metadata:
+  name: myapp-backend-pod #name of pod on k8 to identify it later
+  labels: #to identify, manage, filter, select pods ahead 
+    app: myapp-backend 
+    type: backend 
+spec:
+  containers: 
+    - name: nginx-container # container name in pod
+      image: nginx #container image name docker-hub .etc

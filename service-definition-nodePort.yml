@@ -1,0 +1,15 @@
+#:::::::::::::::: Definition for Node Port Service :::::::::::::::::::::::::
+apiVersion: v1 #kube-apiservice version 
+kind: Service #resource type to use
+metadate: 
+  name: web-server #service name 
+spec:
+  type: NodePort #type of service (default = ClusterIP)
+  ports:
+    - targetPort: 80 #port on which service will listen
+      ports: 90 #port on which service will serve
+      nodePort: 30008 #service exposed on node port(30000-320767)
+
+  selector: #to link service to set of pod labels 
+    app: nginx-container
+    name: nginx

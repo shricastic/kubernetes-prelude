@@ -1,0 +1,14 @@
+#:::::::::::::::: Definition for ClusterIP Service :::::::::::::::::::::::::
+apiVersion: v1 #kube-apiservice version 
+kind: Service #resource type to use
+metadate: 
+  name: redis-db #service name 
+spec:
+  type: ClusterIP #type of service (default = ClusterIP)
+  ports:
+    - targetPort: 6379 #port on which service will listen
+      ports: 6379 #port on which service will serve
+
+  selector: #to link service to set of pod labels 
+    app: myapp
+    name: redis-pod  
